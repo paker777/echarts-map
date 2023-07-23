@@ -1,24 +1,27 @@
 # demo
 
-## Project setup
+## 项目设置
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 项目目录
 ```
-npm run build
+|-- src
+    |-- components
+        |-- chart
+            |-- options    // 存放各种图表的option
+                |-- map    // 地图option
+                    |-- index.js
+            |-- index.vue    // echarts通用封装组件
+    |-- App.vue // 图表使用
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 参考
+vue项目中封装echarts的比较优雅的方式
+https://juejin.cn/post/6995518429952212999

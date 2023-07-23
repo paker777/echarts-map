@@ -20,8 +20,8 @@
 
 <script>
 
-import mapOptions from '@/components/Chart/map/index'
-import pieOptions from '@/components/Chart/pie/index'
+import mapOptions from '@/components/Chart/options/map/index'
+import pieOptions from '@/components/Chart/options/pie/index'
 export default {
   name: 'App',
   data() {
