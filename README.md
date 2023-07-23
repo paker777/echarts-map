@@ -24,6 +24,7 @@ npm run serve
 
 ### 截图
 ![map](https://raw.githubusercontent.com/paker777/echarts-map/main/src/assets/images/map.png)
+
 ### 参考
 vue项目中封装echarts的比较优雅的方式
 https://juejin.cn/post/6995518429952212999
