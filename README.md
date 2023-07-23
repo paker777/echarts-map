@@ -23,7 +23,7 @@ npm run serve
 ```
 
 ### 截图
-![map](https://github.com/paker777/echarts-map/assets/images/map.png)
+![map]([https://github.com/paker777/echarts-map/assets/images/map.png](https://raw.githubusercontent.com/paker777/echarts-map/main/src/assets/images/map.png)https://raw.githubusercontent.com/paker777/echarts-map/main/src/assets/images/map.png)
 
 ### 参考
 vue项目中封装echarts的比较优雅的方式
