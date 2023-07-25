@@ -1,19 +1,20 @@
 import * as echarts from 'echarts'
-import geoJson from '@/assets/map/GD.json'
+import geoJson from '@/assets/map/gd.json'
+
 // 数据来自阿里云可视化平台 http://datav.aliyun.com/portal/school/atlas/area_selector
 // 封装参考 https://juejin.cn/post/6995518429952212999?searchId=20230723070041D608BEDF797BBACDBF9B#heading-13
 const gdMapOption = (data = []) => {
   // 加载地图数据
-  if (!echarts.getMap('GD')) {
-    echarts.registerMap('GD', geoJson)
+  if (!echarts.getMap('gd')) {
+    echarts.registerMap('gd', geoJson)
   }
 
+  let cityMap = data.length ? Math.max(...data.map(i=>i.value)) : 0
   let option = {
     title: {
       text: '广东省人口统计地图(2010)',
-      subtext: '数据来自百度百科',
-      sublink:
-        'https://baike.baidu.com/item/%E5%B9%BF%E4%B8%9C%E7%9C%812010%E5%B9%B4%E7%AC%AC%E5%85%AD%E6%AC%A1%E5%85%A8%E5%9B%BD%E4%BA%BA%E5%8F%A3%E6%99%AE%E6%9F%A5%E4%B8%BB%E8%A6%81%E6%95%B0%E6%8D%AE%E5%85%AC%E6%8A%A5/15888662?fromModule=search-result_lemma-recommend'
+      subtext: '注意：点击标题返回省级地图',
+      triggerEvent: false  // 点击可触发事件
     },
     tooltip: { 
       show: data.length,
@@ -23,20 +24,9 @@ const gdMapOption = (data = []) => {
         return `${data.name }<br/>约${parseInt(data.value)}万人`;
       },
     },
-    geo:{
-      map: 'GD',
-      itemStyle: { //设置背景
-        normal: {
-          borderColor: "rgba(0,63,140,0.2)",
-          shadowColor: "rgba(0,63,140,0.2)",
-          shadowOffsetX: 10,
-          shadowBlur: 2,
-        },
-      }
-    },
     visualMap: {
       min: 0,
-      max: 2000,
+      max: cityMap,
       formatter: function(value) {
         return parseInt(value) + '万'; // 在这里添加单位
       },
@@ -51,7 +41,13 @@ const gdMapOption = (data = []) => {
       {
         name: '广东地图',
         type: 'map',
-        mapType: 'GD',
+        mapType: 'gd',
+        // roam: true, //支持拖拽缩放
+        // scaleLimit: {
+        //   //滚轮缩放的极限控制
+        //   min: 0.8, //缩放最小大小
+        //   max: 1.5, //缩放最大大小
+        // },
         label: { // 设置文字
           show: true,
           fontSize: 12,
@@ -73,6 +69,12 @@ const gdMapOption = (data = []) => {
             areaColor: '#367bff',  // 设置鼠标移入背景颜色
           },
           borderColor: '#367bff',  // 设置地图边框颜色
+          normal: {
+            borderColor: "rgba(0,63,140,0.2)",
+            shadowColor: "rgba(0,63,140,0.2)",
+            shadowOffsetX: 2,
+            shadowBlur: 2,
+          },
         },
         data
       }
